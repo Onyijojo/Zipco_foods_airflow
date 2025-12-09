@@ -1,7 +1,6 @@
 from datetime import timedelta, datetime
 from airflow import DAG
 from airflow.operators.python_operator import PythonOperator
-from airflow.utils.dates import days_ago
 from Extraction import run_extraction # here we import  the function from our etl script
 from Transformation import run_transformation
 from Loading import run_loading
@@ -11,7 +10,7 @@ from Loading import run_loading
 default_args = {
     'owner': 'airflow',
     'depends_on_past': False,
-    'start_date': datetime(2024, 6, 6),
+    'start_date': datetime(2025, 12, 9),
     'email': 'JojoXandra@outlook.com',
     'email_on_failure': True,
     'email_on_retry': True,
