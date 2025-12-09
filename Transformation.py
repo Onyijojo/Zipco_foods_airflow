@@ -20,7 +20,7 @@ def run_transformation():
     # Cleaning the date column to the right date type
     data['Date'] = pd.to_datetime(data['Date'])
 
-    # Creating fact and dimensuons tables
+    # Creating fact and dimensions tables
     # Create Products Table
     products = data[['ProductName']].drop_duplicates().reset_index(drop=True)
     products.index.name = 'ProductID'

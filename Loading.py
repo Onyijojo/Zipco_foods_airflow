@@ -2,21 +2,22 @@
 import pandas as pd
 from azure.storage.blob import BlobServiceClient
 from dotenv import load_dotenv
-import psycopg2
-from sqlalchemy import create_engine
 import os
 
 
-# Load environment variables from .env file
-load_dotenv()
-
+# Data loading
 def run_loading():
+
     #Loading the dataset
     data = pd.read_csv(r'data\clean_data.csv')
     products = pd.read_csv(r'data\products.csv')
     customers = pd.read_csv(r'data\customers.csv')
     staff = pd.read_csv(r'data\staff.csv')
     transaction = pd.read_csv(r'data\transaction.csv')
+
+    # Load environment variables from .env file
+    load_dotenv()
+    
     
     # Create a BlobServiceClient object
     connect_str = os.getenv('AZURE_CONNECTION_STRING_VALUE')
