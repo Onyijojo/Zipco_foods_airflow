@@ -2,9 +2,9 @@ from datetime import timedelta, datetime
 from airflow import DAG
 from airflow.operators.python import PythonOperator
 
-from Extraction import run_extraction # here we import  the function from our etl script
-from Transformation import run_transformation
-from Loading import run_loading
+from zipco.extraction import run_extraction
+from zipco.transformation import run_transformation
+from zipco.loading import run_loading
 
 
 
