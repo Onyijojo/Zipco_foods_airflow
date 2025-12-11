@@ -1,8 +1,12 @@
 import pandas as pd
-
+from pathlib import Path
 
 def run_transformation():
-    data = pd.read_csv(r'zipco_transaction.csv')
+    base_dir = Path(__file__).resolve().parent
+    csv_path = base_dir / "zipco_transaction.csv"
+
+    data = pd.read_csv(csv_path)
+
     # Remove duplicates
     data.drop_duplicates(inplace=True)
 
@@ -49,12 +53,15 @@ def run_transformation():
                                         'CustomerID', 'StaffID', 'DayOfWeek', 'TotalSales']]
 
 
-    
-    # Save normalized tables to new CSV files
-    data.to_csv(r'data\clean_data.csv', index=False)
-    customers.to_csv(r'data\customers.csv', index=False)
-    products.to_csv(r'data\products.csv', index=False)
-    staff.to_csv(r'data\staff.csv', index=False)
-    transaction.to_csv(r'data\transaction.csv', index=False)
-    
-    print('Normalised data saved successfully!')
+    # ---------- Save normalized tables ----------
+
+    data_dir = base_dir / "data"
+    data_dir.mkdir(exist_ok=True)  
+
+    data.to_csv(data_dir / "clean_data.csv", index=False)
+    customers.to_csv(data_dir / "customers.csv", index=False)
+    products.to_csv(data_dir / "products.csv", index=False)
+    staff.to_csv(data_dir / "staff.csv", index=False)
+    transaction.to_csv(data_dir / "transaction.csv", index=False)
+
+    print("Normalised data saved successfully!")

@@ -3,17 +3,19 @@ import pandas as pd
 from azure.storage.blob import BlobServiceClient
 from dotenv import load_dotenv
 import os
-
+from pathlib import Path
 
 # Data loading
 def run_loading():
+    base_dir = Path(__file__).resolve().parent
+    data_dir = base_dir / "data"
 
-    #Loading the dataset
-    data = pd.read_csv(r'data\clean_data.csv')
-    products = pd.read_csv(r'data\products.csv')
-    customers = pd.read_csv(r'data\customers.csv')
-    staff = pd.read_csv(r'data\staff.csv')
-    transaction = pd.read_csv(r'data\transaction.csv')
+    # Loading the dataset
+    data = pd.read_csv(data_dir / "clean_data.csv")
+    products = pd.read_csv(data_dir / "products.csv")
+    customers = pd.read_csv(data_dir / "customers.csv")
+    staff = pd.read_csv(data_dir / "staff.csv")
+    transaction = pd.read_csv(data_dir / "transaction.csv")
 
     # Load environment variables from .env file
     load_dotenv()
